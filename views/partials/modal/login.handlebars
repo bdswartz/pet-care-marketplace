@@ -1,0 +1,80 @@
+<div class="modal fade" id="user-info" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Credentials</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="signIn">
+          <div class="form-group">
+            <label for="inputAccount">Email</label>
+            <input type="text" class="form-control" id="emailA">
+          </div>
+          <div class="form-group">
+            <label for="inputAccount">Password</label>
+            <input type="password" class="form-control" id="user_passwordA">
+          </div>
+      {{!-- <div class="modal-footer"> --}}
+        <button id="loginSubmit" type="submit" class="btn btn-primary" data-dismiss="modal">Login</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      {{!-- </div> --}}
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sign-up" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="signIn">
+          <div class="form-group">
+            <input type="text" name="first" id="fist-name" class="form-control" placeholder="First Name"/>
+            <label class="form-label" for="fist-name"></label>
+          </div>
+          <div class="form-group">
+            <input type="text" name="last" id="last-name" class="form-control" placeholder="Last Name"/>
+            <label class="form-label" for="last-name"></label>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email"/>
+            <label class="form-label" for="email"></label>
+          </div>
+          <div class="form-group">
+            <input type="password" name="password"id="password" class="form-control" placeholder="Password"/>
+            <label class="form-label" for="password"></label>
+          </div>
+          <div class="form-check form-outline mb-2">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="own" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">I'm a owner looking for a pet care specialist.</label>
+          </div>
+          <div class="form-check form-outline mb-3">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="walk" value="option2">
+            <label class="form-check-label" for="exampleRadios2">I love animals and want to help.</label>
+          </div>
+      {{!-- <div class="modal-footer"> --}}
+        <button id="signupSubmit" type="submit" class="btn btn-primary" data-dismiss="modal">Login</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      {{!-- </div> --}}
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<script src="/javascript/login.js"></script>

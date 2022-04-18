@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <a class="navbar-brand bold" href="/">
+    Scout
+  </a>
+  
+  <ul class="nav navbar-nav ml-auto">
+    {{#if loggedIn}}
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <a href="/jobs" class="dropdown-item" type="button">Job Search</a>
+            <a href="/dashboard" class="dropdown-item" type="button">Dashboard</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="btn success" id="logout">Logout</a>
+      </li>
+      <script src="/javascript/logout.js"></script>
+    {{else}}
+      <li id="job" class="nav-item">
+           <a href="/jobs" id="job"class="btn success" type="button">See Open Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn success" type="button" data-toggle="modal" data-target="#user-info" id="loginNav">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn success" type="button" data-toggle="modal" data-target="#sign-up" id="signupNav">Sign Up</a>
+      </li>
+    {{/if}}
+  </ul>
+</nav>
+
+{{> modal/login }}
+
+<script src="/javascript/login.js"></script>
+<script src="/javascript/login-walker.js"></script>
+
+

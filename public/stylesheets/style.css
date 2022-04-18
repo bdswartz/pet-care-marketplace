@@ -1,0 +1,161 @@
+:root {
+  --primary-color: #e1dfe3;
+  --secondary-color: #5baf62;
+  --tertiary-color: hsl(232, 61%, 84%);
+  --light: #e6e6e9;
+  --dark: #182c23;
+  }
+
+body {
+  color: white;
+  background: url("/images/landingpage_background.jpg") no-repeat center center fixed;
+  height:100%
+}
+
+.navbar{
+  background-color: var(--primary-color) !important;
+}
+
+.navbar-brand {
+  color: var(--secondary-color) !important;
+  font-size: 2.0rem;
+  padding: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.opaque-card {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+.nav-item {
+  margin-left: 10px;
+}
+/* .nav-link {
+  background-color: #55C35E !important; 
+  color: #FFFFFF !important;
+  margin-right: 5px;
+} */
+
+.jumbotron {
+  background: rgba(0,0,0,0);
+}
+
+.lead {
+  font-family: 'Old Standard TT', serif;
+  font-weight: 600 !important;
+  font-size: 3.6rem;
+  line-height: 1;
+}
+
+.modal {
+  color: black;
+}
+
+.btn {
+  color:white !important;
+  background:var(--secondary-color) ;
+  border: 1px solid white;
+}
+
+#user-form, .header-wrap, #create-form, .create-user-wrap {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+#update-err-msg,
+#login-err-msg,
+#create-err-msg {
+  color: red !important;
+}
+
+#go-home {
+ width: auto;
+ height: 65px;
+}
+
+.container1 {
+  padding-bottom: 2%;
+  margin-top: 7%;
+  margin-left: 50%;
+  height: 100%;
+  border-radius: 0.25rem;
+  margin-bottom: 2%;
+  width: 662px;
+}
+
+#section-form {
+  padding: 9%;
+  padding-top: 2%;
+}
+
+[data-useremail="true"] {
+  color: white !important;
+}
+[data-register="true"] {
+  color: white !important;
+}
+
+.userId h2, .header-wrap h1 {
+  text-transform: capitalize;
+}
+
+hr {
+  background-color: #fff !important;
+}
+
+.list-group-item {
+  line-height: 2.5;
+}
+
+.form-container {
+  padding: 5%;
+}
+
+.card-body {
+  color: #444;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  background-color: var(--primary-color);
+}
+
+#your-dashboard {
+  font-family: 'Old Standard TT', serif;
+  font-weight: 600 !important;
+  padding-top: 9%;
+  font-size: 3.4rem;
+  color: #444;
+}
+
+#pets-container h1{
+  font-family: 'Old Standard TT', serif;
+  font-weight: 600 !important;
+  padding-top: 2%;
+  color: #444;
+}
+
+#jobs-container h1{
+  font-family: 'Old Standard TT', serif;
+  font-weight: 600 !important;
+  padding-top: 2%;
+  color: #444;
+}
+ #jobs-container {
+  color: #444;
+ }
+
+#about-pet-input {
+  width: 100%;
+}
+
+.job-tab {
+  color: var(--secondary-color);
+}
+
+#jobs-in-area {
+  color: var(--secondary-color);
+}

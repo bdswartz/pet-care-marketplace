@@ -1,0 +1,30 @@
+<div class="jobs">
+{{#each this}}
+{{#if this.id}}
+<div class="card opaque-card mb-2">
+    <div class="card-body">
+        <h4 class="card-title">{{ owner.first_name }} {{ owner.last_name }}</h5>
+        <h5 class="card-text">Pet: {{ pet.pet_name }}</h5>
+        <h5 class="card-subtitle">Visit: {{#if walk }}Walk{{/if}}{{#if check_in }}Check-In{{/if}}</h6>
+        <h5 class="card-text">Pay: {{ this.pay }}</h5>
+        <h6 class="card-text text-muted">Time: {{ this.timeframe }}</h6>
+        <h6 class="card-text text-muted">Location: {{ this.location }}</h6>
+        {{#if ../isWalker}}
+        {{!-- {{#unless completed}} --}}
+        <button id="complete-job" data-id="{{this.id}}" class="float-right btn success complete-job-class" type="button">Complete</button>
+        {{!-- {{/unless}} --}}
+        {{/if}}
+        {{#if ../isOwner}}
+        {{!-- {{#unless completed}} --}}
+        <button id="delete-job" data-id="{{this.id}}" class="float-right btn success delete-job-class" type="button">Cancel Job</button>
+        {{!-- {{/unless}} --}}
+        {{/if}}
+    </div>
+</div>
+{{/if}}
+{{/each}}
+</div>
+
+
+
+

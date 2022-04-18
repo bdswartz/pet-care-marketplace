@@ -1,4 +1,4 @@
-# [Welcome to Walks of Love]()
+# [Welcome to Scout Pet Care]()
 
 #### The Walks of Love is a full-stack website that matches pet owners with freelance pet care specialists looking for new friends to care about.  It allows pet owners to post opportunities to care for their pets when they are unable to and allows potential pet caregivers to accept those opportunities.
 
@@ -19,7 +19,7 @@ N/A -
 ---
 
 ## Usage
-A user can navigate from the landing page by signing up using the nav bar link or by logging in as a pet owner or a pet cagergiver.  Upon signing up or logging in, they navigate to their dashboard.  On the dashboard an owner can view/add to their pets and see any jobs that they have previously created.  A pet caregiver can see all of the jobs that they have previously taken; both open and completed.  The job search page is navigable from the nav bar drop down and shows open jobs.  If logged in as a pet caregiver, the option to accept the job is there.
+A user can navigate from the landing page by signing up using the nav bar link or by logging in as a pet owner or a pet caregiver.  Upon signing up or logging in, they navigate to their dashboard.  On the dashboard an owner can view/add to their pets and see any jobs that they have previously created.  A pet caregiver can see all of the jobs that they have previously taken; both open and completed.  The job search page is navigable from the nav bar drop down and shows open jobs.  If logged in as a pet caregiver, the option to accept the job is there.
 
 ---
 
@@ -75,7 +75,7 @@ GIVEN a pet care website:
 -  Utilizes sequelize for ORM to aid in creating and querying the database.
 -  Uses express as the server.
 -  The site maintains a database of users and requires login so that other users can see who created a post or comment.
--  Session data is stored upon user signing up for tghe site or logging in to the site.  This customizes user experience based on how they are logged in (owner or pet caregiver).
+-  Session data is stored upon user signing up for the site or logging in to the site.  This customizes user experience based on how they are logged in (owner or pet caregiver).
 
 
 ![Top of Landing Page](./landing-ss.jpg)

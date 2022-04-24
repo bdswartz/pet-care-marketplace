@@ -19,7 +19,7 @@ N/A -
 ---
 
 ## Usage
-A user can navigate from the landing page by signing up using the nav bar link or by logging in as a pet owner or a pet caregiver.  Upon signing up or logging in, they navigate to their dashboard.  On the dashboard an owner can view/add to their pets and see any jobs that they have previously created.  A pet caregiver can see all of the jobs that they have previously taken; both open and completed.  The job search page is navigable from the nav bar drop down and shows open jobs.  If logged in as a pet caregiver, the option to accept the job is there.
+A user can navigate from the landing page by signing or loggin in using the nav bar links.  Upon signing up or logging in, the user navigates to their dashboard.  On the dashboard an owner can view/add to their pets and see any jobs that they have previously created.  A pet caregiver can see all of the jobs that they have previously taken; both open and completed.  The user can refine their search criteria by providing a search radius to limit the jobs shown. The job search page is navigable from the nav bar drop down and shows open jobs.  If logged in as a pet caregiver, the option to accept the job is there.
 
 ---
 
@@ -36,6 +36,8 @@ A user can navigate from the landing page by signing up using the nav bar link o
     * [express-session package](https://www.npmjs.com/package/express-session)
     * [connect-session-sequelize package](https://www.npmjs.com/package/connect-session-sequelize)
     * [uniqid package](https://www.npmjs.com/package/uniqid)
+    * [moment for handlebars](https://www.npmjs.com/package/handlebars.moment)
+    * [geocoder npm package](https://www.npmjs.com/package/node-geocoder)
   * Bootstrap
 
   ---
@@ -43,7 +45,7 @@ A user can navigate from the landing page by signing up using the nav bar link o
 ## User Story
 ### AS A developer who writes about tech
 I WANT a website where I can go to post pet care opportunities.
-SO THAT as an owner, I can post opportunities for caregivers to take care on my pet when i am unable.  And as a caregiver I can offer my services by accepting posted opportunities to care for pets.
+SO THAT as an owner, I can post opportunities for caregivers to take care of my pet when i am unable.  And as a caregiver I can offer my services by accepting posted opportunities to care for pets.
     
 ### Acceptance Criteria for Minimum Viable Product
 
@@ -72,11 +74,87 @@ GIVEN a pet care website:
 ---
 
 ## Features
--  Utilizes sequelize for ORM to aid in creating and querying the database.
+-  Utilizes sequelize ORM to aid in creating and querying the database.
 -  Uses express as the server.
--  The site maintains a database of users and requires login so that other users can see who created a post or comment.
+-  The site maintains a database of owners and walkers and requires login so that the user experience is based on their need
 -  Session data is stored upon user signing up for the site or logging in to the site.  This customizes user experience based on how they are logged in (owner or pet caregiver).
+-  User address is entered upon signup.  That address is immediately converted to a latitude and longitude using the node geocoder package.  The location of the job and the location of the pert service provider is used to calculate distance from one to the other and allows a service provider to search based on proximity to the job.
 
+<!-- ## File Architecture
+
+<details><summary><b>Click To View</b></summary>
+ 
+
+         AppBeware
+         ├── Client
+         │   ├── build
+         │   ├── node_modules
+         │   ├── public
+         │   ├── src
+         │   │   ├── assets
+         |   │   │   ├── images
+         |   │   │   ├── Readme_assets
+         |   │   │   └── styling
+         │   │   ├── components
+         |   │   │   ├── AboutTheShields
+         |   │   │   ├── AddAppReview
+         |   │   │   ├── Alerts
+         |   │   │   ├── AppPageComponents
+         |   │   │   ├── CategoryCards
+         |   │   │   ├── Footer
+         |   │   │   ├── HeaderContainer
+         |   │   │   ├── HomePageShieldLayout
+         |   │   │   ├── HomepageTabNav
+         |   │   │   ├── HoverShieldInfo
+         |   │   │   ├── Modals
+         |   │   │   ├── Nav
+         |   │   │   ├── Ratings
+         |   │   │   ├── SearchAppAnnie
+         |   │   │   ├── SearchResults
+         |   │   │   ├── SignIn
+         |   │   │   ├── SignUp
+         |   │   │   ├── Toasties
+         |   │   │   ├── TopTrendingApps
+         |   │   │   ├── UserDetailsPanel
+         |   │   │   └── Wrapper
+         │   │   ├── pages
+         |   │   │   ├── AppPage.js
+         |   │   │   ├── CategoryPage.js
+         |   │   │   ├── Disclaimer.js
+         |   │   │   ├── Homepage.js
+         |   │   │   ├── ProfilePage.js
+         |   │   │   └── SplashPage.js
+         │   │   ├── Store
+         |   │   │   ├── Actions
+         |   │   │   ├── Reducers
+         |   │   │   ├── history.js
+         |   │   │   ├── index.js
+         |   │   │   └── InitialState.json
+         │   │   ├── utils
+         │   │   ├── App.js
+         │   │   └── index.js
+
+         ├── config
+         ├── controllers
+         ├── db
+         ├── middlewares
+         ├── models
+         ├── node_modules
+         ├── routes
+         ├── views
+         |   ├── layouts
+         |   ├── partials
+         |   │   │   ├── history.js
+         |   │   │   ├── index.js
+         |   │   │   └── InitialState.json
+         ├── .gitignore
+         ├── package-lock.json
+         ├── package.json
+         ├── Readme.md 
+         └── server.js
+
+
+</details> -->
 
 ![Top of Landing Page](./landing-ss.jpg)
 

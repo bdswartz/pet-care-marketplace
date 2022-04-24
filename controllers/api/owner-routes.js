@@ -9,7 +9,6 @@ const { Owner, Job, Pets } = require("../../models");
 
 // GET all owners
 router.get("/", (req, res) => {
-  // Access the owner model and run .findAll() method)
   Owner.findAll({
     attributes: { exclude: ["password"] },
   })
@@ -67,9 +66,7 @@ router.post("/", async (req, res) => {
   const addString = `${req.body.address}  ${req.body.city}, ${req.body.state}`
   const latLong = await codeLatLong(addString)
   console.log(latLong);
-   
-  // const id = uniqid();
-  // expects {id: {public key from Hiro} first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
+
   Owner.create({
     id: uniqid(),
     first_name: req.body.first_name,

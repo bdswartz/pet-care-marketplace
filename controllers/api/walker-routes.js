@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
     });
 });
 
+// lookup the walker ID from the front end to get the user info
 router.get("/walkerid", (req, res) => {
   if (req.session.loggedIn) {
     console.log(req.session.user_id);
@@ -28,42 +29,6 @@ router.get("/walkerid", (req, res) => {
   }
 });
 
-// // GET one walker
-// router.get("/currentwalker", (req, res) => {
-//   Walker.findOne({
-//     attributes: { exclude: ["password"] },
-//     // include: [
-//     //   {
-//     //     model: Job,
-//     //     attributes: [
-//     //       "id",
-//     //       "pay",
-//     //       "check_in",
-//     //       "walk",
-//     //       "timeframe",
-//     //       "location",
-//     //       "completed",
-//     //       "owner_id",
-//     //       "animal_id",
-//     //     ],
-//     //   },
-//     // ],
-//     where: {
-//       id: req.session.user_id,
-//     },
-//   })
-//     .then((dbWalkerData) => {
-//       if (!dbWalkerData) {
-//         res.status(404).json({ message: "No walker found with this id" });
-//         return;
-//       }
-//       res.json(dbWalkerData);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
 
 // POST /api/walker (used to create a walker on signup)
 router.post("/", async (req, res) => {
@@ -126,8 +91,8 @@ router.post("/login", (req, res) => {
       // declare session variables
       req.session.user_id = dbWalkerData.id;
       req.session.email = dbWalkerData.email;
-      req.session.lat = dbWalkerData.lat;
-      req.session.long = dbWalkerData.long;
+      // req.session.lat = dbWalkerData.lat;
+      // req.session.long = dbWalkerData.long;
       req.session.loggedIn = true;
       req.session.isWalker = true;
       req.session.isOwner = false;
@@ -150,8 +115,7 @@ router.post("/logout", (req, res) => {
 
 // PUT /api/walker/ to save a walkers job search radius preference
 router.put("/", (req, res) => {
-  // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
- TODO:
+  
   Walker.update({radius: req.body.radius}, {
     individualHooks: true,
     where: {

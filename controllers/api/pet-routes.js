@@ -41,7 +41,6 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const id = req.session.user_id;
   Pets.create({
-    // id: req.body.id,
     pet_name: req.body.pet_name,
     owner_id: id,
     pet_type: req.body.pet_type,
@@ -53,9 +52,6 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
-
-// PUT /api/Pets/1
-router.put("/:id", (req, res) => {});
 
 // DELETE /api/Pets/#
 router.delete("/:id", (req, res) => {

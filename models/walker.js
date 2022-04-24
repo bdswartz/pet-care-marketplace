@@ -39,6 +39,35 @@ Walker.init(
         len: [4],
       },
     },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    zip_code: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    long: {
+      type: DataTypes.DECIMAL(10,7),
+      allowNull: false,
+    },
+    lat: {
+      type: DataTypes.DECIMAL(10,7),
+      allowNull: false,
+    },
+    radius: {
+      type: DataTypes.DECIMAL(8,2),
+      allowNull: false,
+      defaultValue: 13000,
+    },
     is_walker: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

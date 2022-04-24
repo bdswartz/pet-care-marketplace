@@ -3,13 +3,13 @@ const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
 const { Job, Pets, Owner } = require("../models");
 
-// gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
+// gets all the jobs by ID on page load and stores them in the jobs variable to use in handlebars
 router.get("/", withAuth, (req, res) => {
   const id = req.session.user_id;
 
   if (req.session.isWalker) {
     Job.findAll({
-      // order: [['timeframe', 'DESC']],
+      order: [['timeframe', 'ASC']],
       where: {
         walker_id: id,
       },
@@ -20,7 +20,17 @@ router.get("/", withAuth, (req, res) => {
         },
         {
           model: Owner,
-          attributes: ["first_name", "last_name"],
+          attributes: [
+            "first_name",
+            "last_name", 
+            "is_owner", 
+            "address", 
+            "city",
+            "state",
+            "zip_code",
+            "lat", 
+            "long"
+          ],
         },
       ],
     }).then((dbJobData) => {
@@ -56,7 +66,7 @@ router.get("/", withAuth, (req, res) => {
 
   if (req.session.isOwner) {
     Job.findAll({
-      // order: [['timeframe', 'DESC']],
+      order: [['timeframe', 'DESC']],
       where: {
         owner_id: id,
         // completed: false,
@@ -68,7 +78,17 @@ router.get("/", withAuth, (req, res) => {
         },
         {
           model: Owner,
-          attributes: ["first_name", "last_name"],
+          attributes: [
+            "first_name",
+            "last_name", 
+            "is_owner", 
+            "address", 
+            "city",
+            "state",
+            "zip_code",
+            "lat", 
+            "long"
+          ],
         },
       ],
     }).then((dbJobData) => {
@@ -101,60 +121,6 @@ router.get("/", withAuth, (req, res) => {
       });
     });
   }
-});
-
-// Path to edit page where user can edit or delete a post
-router.get("/edit/:id", withAuth, (req, res) => {
-  Post.findOne({
-    where: {
-      // use the ID from url parameters
-      id: req.params.id,
-    },
-    attributes: ["id", "post_contents", "title", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: [
-          "id",
-          "comment_contents",
-          "post_id",
-          "user_id",
-          "created_at",
-        ],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username"],
-      },
-    ],
-  })
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({ message: "No post found with this id" });
-        return;
-      }
-      // serialize data before passing to template
-      const post = dbPostData.get({ plain: true });
-      res.render("edit-post", {
-        post,
-        loggedIn: true,
-        username: req.session.username,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-// Path to create a post HTML page
-router.get("/create-post", withAuth, (req, res) => {
-  res.render("create-post", { loggedIn: true, username: req.session.username });
-  return;
 });
 
 module.exports = router;

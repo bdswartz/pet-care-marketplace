@@ -12,12 +12,22 @@ const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const session = require("express-session");
 
-// set up handlebars as the template engine
+var Handlebars = require("handlebars");
+var MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
+
+// define path to helpers
 const helpers = require("./utils/helpers");
+
+// set up handlebars as the template engine
 const exphbs = require("express-handlebars");
 const hbs = exphbs.create({ helpers });
+
+// set extension in views files to handlebars so engine recognizes handlebars files
+// ie tells handlebars layout file to render
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
+
 
 // connect to npm module connect-session-sequelize and pass through express sessionStore property
 const SequelizeStore = require("connect-session-sequelize")(session.Store);

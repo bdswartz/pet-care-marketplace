@@ -23,28 +23,39 @@ Job.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-
+    food_and_water: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
     walk: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-
+    treat: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    litter_box: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
     timeframe: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-
     location: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-
     completed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
     },
-
+    job_feedback: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     owner_id: {
       type: DataTypes.STRING,
       references: {
@@ -52,7 +63,6 @@ Job.init(
         key: "id",
       },
     },
-
     walker_id: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -61,7 +71,6 @@ Job.init(
         key: "id",
       },
     },
-
     animal_id: {
       type: DataTypes.INTEGER,
       references: {

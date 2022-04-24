@@ -4,14 +4,16 @@ $(".new-job-btn")
     const id = event.target.getAttribute("data-value");
     async function createPostHandler(event) {
       event.preventDefault();
-
+    
       const payStr = document.querySelector('input[name="pay"]').value.trim();
       const pay = parseInt(payStr);
-
+      // const pay = 0;
       const dateStart = document.getElementById("date-start").value;
       const hourStart = document.getElementById("hour-start").value;
       const timeframe = dateStart + "T" + hourStart + "Z";
-
+      const food_and_water = document.getElementById('food_and_water').checked;
+      const treat = document.getElementById('treat').checked;
+      const litter_box = document.getElementById('litter_box').checked
       const locationStr = document
         .querySelector('input[name="location"]')
         .value.trim();
@@ -33,11 +35,14 @@ $(".new-job-btn")
         const response = await fetch("/api/jobs", {
           method: "POST",
           body: JSON.stringify({
-            pay,
-            check_in,
-            walk,
-            timeframe,
-            location,
+            pay: pay,
+            check_in: check_in,
+            food_and_water: food_and_water,
+            walk: walk,
+            treat: treat,
+            litter_box: litter_box,
+            timeframe: timeframe,
+            location: location,
             completed: false,
             walker_id: null,
             // change this to accept the pet ID based off what one was selected

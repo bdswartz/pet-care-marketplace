@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="jobCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -26,15 +26,21 @@
               <option name="walk" value="walk" selected>Walk</option>
               <option name="checkin" value="checkin">Check-in</option>
             </select>
-
-          </div>
+            <div id="add-ons">
+              <input type="checkbox" id="litter_box" name="add_on" value="litter_box">
+              <label for="litter_box">Clean Litter Box</label>
+              <input type="checkbox" id="treat" name="add_on" value="treat">
+              <label for="treat">Treat</label>
+              <input type="checkbox" id="food_and_water" name="add_on" value="food_and_water">
+              <label for="food_and_water">Check Food and Water</label>
+            </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save changes</button>
           </div>
-        </form>
       </div>
-
+      </form>
+      </div>
     </div>
   </div>
 </div>

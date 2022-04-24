@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const uniqid = require("uniqid");
+const codeLatLong = require("../../utils/codeLatLong");
 
 // const withAuth = require('../../utils/auth');
 const { Owner, Job, Pets } = require("../../models");
@@ -61,7 +62,12 @@ router.get("/:id", (req, res) => {
 });
 
 // POST /api/owner (create an owner - used for the signup of new owners)
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
+  // concatenate the address string and send to geocoder function to get Lat and Long
+  const addString = `${req.body.address}  ${req.body.city}, ${req.body.state}`
+  const latLong = await codeLatLong(addString)
+  console.log(latLong);
+   
   // const id = uniqid();
   // expects {id: {public key from Hiro} first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
   Owner.create({
@@ -70,6 +76,12 @@ router.post("/", (req, res) => {
     last_name: req.body.last_name,
     email: req.body.email,
     password: req.body.password,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    lat: latLong[0].latitude,
+    long: latLong[0].longitude,
+    zip_code: req.body.zip_code,
   })
     .then((dbOwnerData) => {
       req.session.save(() => {

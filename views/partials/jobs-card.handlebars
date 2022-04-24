@@ -3,12 +3,26 @@
 {{#if this.id}}
 <div class="card opaque-card mb-2">
     <div class="card-body">
-        <h4 class="card-title">{{ owner.first_name }} {{ owner.last_name }}</h5>
-        <h5 class="card-text">Pet: {{ pet.pet_name }}</h5>
-        <h5 class="card-subtitle">Visit: {{#if walk }}Walk{{/if}}{{#if check_in }}Check-In{{/if}}</h6>
-        <h5 class="card-text">Pay: {{ this.pay }}</h5>
-        <h6 class="card-text text-muted">Time: {{ this.timeframe }}</h6>
-        <h6 class="card-text text-muted">Location: {{ this.location }}</h6>
+        <h4 class="card-title font-weight-bold">Pet Name: {{ pet.pet_name }}</h4>
+          <div class="flex-section">
+            <div class="card-section">
+                <h5 class="card-text">Pet Type:  {{ pet.pet_type }}</h5>
+                <h5 class="card-text">Owner:  {{ owner.first_name }} {{ owner.last_name }}</h5>
+                <h5 class="card-text">Price:    ${{ this.pay }}</h5>
+            </div>
+            <div class="card-section">
+                <h5 class="card-text">Visit Type: {{#if walk }}Walk{{/if}}{{#if check_in }}Check-In{{/if}}</h5>
+                <h5 class="card-text my-0"><u>Add-Ons</u></h5>
+                {{#if this.food_and_water }}<h5 class="my-0">Check Food and Water</h5>{{/if}}
+                {{#if this.treat }}<h5 class="my-0">Treat after Walk</h5>{{/if}}
+                {{#if this.litter_box }}<h5 class="my-0">Clean Litter Box</h5>{{/if}}
+            </div>
+        </div>
+        <h6 class="card-text text-muted mt-3"><strong>Appt. Time:</strong> {{ moment date=this.timeframe format="dddd, MMMM Do YYYY, h:mm a" }}</h6>
+        <h6 class="card-text text-muted"><strong>Address</strong><br>
+        {{ owner.address }}<br>
+        {{ owner.city}}, {{owner.state}}  {{owner.zip_code}}</h6>
+
         {{#if ../isWalker}}
         {{!-- {{#unless completed}} --}}
         <button id="complete-job" data-id="{{this.id}}" class="float-right btn success complete-job-class" type="button">Complete</button>

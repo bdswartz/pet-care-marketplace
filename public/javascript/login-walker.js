@@ -25,4 +25,4 @@ async function loginFormHandler(event) {
   // const loadPage = await console.log("Test");
 }
 
-document.querySelector(".signIn").addEventListener("click", loginFormHandler);
+document.querySelector("#loginSubmit").addEventListener("click", loginFormHandler);

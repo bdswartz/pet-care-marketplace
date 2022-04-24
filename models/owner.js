@@ -39,6 +39,30 @@ Owner.init(
         len: [4],
       },
     },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    zip_code: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    long: {
+      type: DataTypes.DECIMAL(10,7),
+      allowNull: false,
+    },
+    lat: {
+      type: DataTypes.DECIMAL(10,7),
+      allowNull: false,
+    },
     is_owner: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

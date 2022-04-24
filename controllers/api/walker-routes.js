@@ -2,6 +2,7 @@ const router = require("express").Router();
 const withAuth = require("../../utils/auth");
 const { Walker, Job } = require("../../models");
 const uniqid = require("uniqid");
+const codeLatLong = require("../../utils/codeLatLong");
 
 //  route coming into file is /api/walkers
 
@@ -27,57 +28,69 @@ router.get("/walkerid", (req, res) => {
   }
 });
 
-// GET one walker
-router.get("/:id", (req, res) => {
-  Walker.findOne({
-    attributes: { exclude: ["password"] },
-    include: [
-      {
-        model: Job,
-        attributes: [
-          "id",
-          "pay",
-          "check_in",
-          "walk",
-          "timeframe",
-          "location",
-          "completed",
-          "owner_id",
-          "animal_id",
-        ],
-      },
-    ],
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbWalkerData) => {
-      if (!dbWalkerData) {
-        res.status(404).json({ message: "No walker found with this id" });
-        return;
-      }
-      res.json(dbWalkerData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// // GET one walker
+// router.get("/currentwalker", (req, res) => {
+//   Walker.findOne({
+//     attributes: { exclude: ["password"] },
+//     // include: [
+//     //   {
+//     //     model: Job,
+//     //     attributes: [
+//     //       "id",
+//     //       "pay",
+//     //       "check_in",
+//     //       "walk",
+//     //       "timeframe",
+//     //       "location",
+//     //       "completed",
+//     //       "owner_id",
+//     //       "animal_id",
+//     //     ],
+//     //   },
+//     // ],
+//     where: {
+//       id: req.session.user_id,
+//     },
+//   })
+//     .then((dbWalkerData) => {
+//       if (!dbWalkerData) {
+//         res.status(404).json({ message: "No walker found with this id" });
+//         return;
+//       }
+//       res.json(dbWalkerData);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 // POST /api/walker (used to create a walker on signup)
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   // expects {id: 'xxxxx' first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
+  const addString = `${req.body.address}  ${req.body.city}, ${req.body.state}`
+  const latLong = await codeLatLong(addString)
+  console.log(latLong);
+  
   Walker.create({
     id: uniqid(),
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
     password: req.body.password,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    lat: latLong[0].latitude,
+    long: latLong[0].longitude,
+    zip_code: req.body.zip_code,
   })
     .then((dbWalkerData) => {
       req.session.save(() => {
         req.session.user_id = dbWalkerData.id;
         req.session.email = dbWalkerData.email;
+        req.session.lat = dbWalkerData.lat;
+        req.session.long = dbWalkerData.long;
         req.session.loggedIn = true;
         req.session.isWalker = true;
         req.session.isOwner = false;
@@ -113,6 +126,8 @@ router.post("/login", (req, res) => {
       // declare session variables
       req.session.user_id = dbWalkerData.id;
       req.session.email = dbWalkerData.email;
+      req.session.lat = dbWalkerData.lat;
+      req.session.long = dbWalkerData.long;
       req.session.loggedIn = true;
       req.session.isWalker = true;
       req.session.isOwner = false;
@@ -133,13 +148,14 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// PUT /api/walker/1
-router.put("/:id", (req, res) => {
+// PUT /api/walker/ to save a walkers job search radius preference
+router.put("/", (req, res) => {
   // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
-  Walker.update(req.body, {
+ TODO:
+  Walker.update({radius: req.body.radius}, {
     individualHooks: true,
     where: {
-      id: req.params.id,
+      id: req.session.user_id,
     },
   })
     .then((dbWalkerData) => {

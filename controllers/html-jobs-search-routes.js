@@ -22,7 +22,6 @@ router.get("/", (req, res) => {
         res.status(404).json({ message: "No walker found with this id" });
         return;
       }
-      console.log("*****Walker:", dbWalkerData);
       inputDistance = dbWalkerData.radius;
       walkerLat = dbWalkerData.lat;
       walkerLong = dbWalkerData.long;
@@ -32,7 +31,6 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
   }
-
   Job.findAll({
     order: [['timeframe', 'ASC']],
     where: {

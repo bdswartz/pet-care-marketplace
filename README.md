@@ -1,6 +1,6 @@
 # [Welcome to Scout Pet Care](https://scout-pet-service.herokuapp.com/)
 
-#### The Walks of Love is a full-stack website that matches pet owners with freelance pet care specialists looking for new friends to care about.  It allows pet owners to post opportunities to care for their pets when they are unable to and allows potential pet caregivers to accept those opportunities.
+#### The Scout Pet Care is a full-stack website that matches pet owners with freelance pet care specialists looking for new friends to care about.  It allows pet owners to post opportunities to care for their pets when they are unable to and allows potential pet caregivers to accept those opportunities.
 
 ---
 
@@ -26,18 +26,18 @@ A user can navigate from the landing page by signing or loggin in using the nav 
 ## Technologies
 
 > <b>Development Tools:</b>
-  * JavaScript
-  * Express.js
+* JavaScript
+  * [Express.js](https://www.npmjs.com/package/express)
   * [mySQL](https://www.npmjs.com/package/mysql2)
   * node.js
-    * [Sequelize package](https://www.npmjs.com/package/sequelize)
-    * [dotenv package](https://www.npmjs.com/package/dotenv)
-    * [express handlebars package](https://www.npmjs.com/package/express-handlebars)
-    * [express-session package](https://www.npmjs.com/package/express-session)
-    * [connect-session-sequelize package](https://www.npmjs.com/package/connect-session-sequelize)
-    * [uniqid package](https://www.npmjs.com/package/uniqid)
-    * [moment for handlebars](https://www.npmjs.com/package/handlebars.moment)
-    * [geocoder npm package](https://www.npmjs.com/package/node-geocoder)
+  * [Sequelize package](https://www.npmjs.com/package/sequelize)
+  * [dotenv package](https://www.npmjs.com/package/dotenv)
+  * [express handlebars package](https://www.npmjs.com/package/express-handlebars)
+  * [express-session package](https://www.npmjs.com/package/express-session)
+  * [connect-session-sequelize package](https://www.npmjs.com/package/connect-session-sequelize)
+  * [uniqid package](https://www.npmjs.com/package/uniqid)
+  * [moment for handlebars](https://www.npmjs.com/package/handlebars.moment)
+  * [geocoder npm package](https://www.npmjs.com/package/node-geocoder)
   * Bootstrap
 
   ---
@@ -74,87 +74,14 @@ GIVEN a pet care website:
 ---
 
 ## Features
+-  User address is entered upon signup.  That address is immediately converted to a latitude and longitude using the node geocoder package.  The locations of the job and the pet service provider are used to calculate distance from one to the other; thereby allowing searches based on the service provider's proximity to the job.
 -  Utilizes sequelize ORM to aid in creating and querying the database.
 -  Uses express as the server.
--  The site maintains a database of owners and walkers and requires login so that the user experience is based on their need
+-  The site maintains a database of owners and walkers and requires login so that the user experience is based on their particular need.
+-  Owner and pet service provider data is persistent using the mySQL database.
 -  Session data is stored upon user signing up for the site or logging in to the site.  This customizes user experience based on how they are logged in (owner or pet caregiver).
--  User address is entered upon signup.  That address is immediately converted to a latitude and longitude using the node geocoder package.  The location of the job and the location of the pert service provider is used to calculate distance from one to the other and allows a service provider to search based on proximity to the job.
 
-<!-- ## File Architecture
-
-<details><summary><b>Click To View</b></summary>
- 
-
-         AppBeware
-         ├── Client
-         │   ├── build
-         │   ├── node_modules
-         │   ├── public
-         │   ├── src
-         │   │   ├── assets
-         |   │   │   ├── images
-         |   │   │   ├── Readme_assets
-         |   │   │   └── styling
-         │   │   ├── components
-         |   │   │   ├── AboutTheShields
-         |   │   │   ├── AddAppReview
-         |   │   │   ├── Alerts
-         |   │   │   ├── AppPageComponents
-         |   │   │   ├── CategoryCards
-         |   │   │   ├── Footer
-         |   │   │   ├── HeaderContainer
-         |   │   │   ├── HomePageShieldLayout
-         |   │   │   ├── HomepageTabNav
-         |   │   │   ├── HoverShieldInfo
-         |   │   │   ├── Modals
-         |   │   │   ├── Nav
-         |   │   │   ├── Ratings
-         |   │   │   ├── SearchAppAnnie
-         |   │   │   ├── SearchResults
-         |   │   │   ├── SignIn
-         |   │   │   ├── SignUp
-         |   │   │   ├── Toasties
-         |   │   │   ├── TopTrendingApps
-         |   │   │   ├── UserDetailsPanel
-         |   │   │   └── Wrapper
-         │   │   ├── pages
-         |   │   │   ├── AppPage.js
-         |   │   │   ├── CategoryPage.js
-         |   │   │   ├── Disclaimer.js
-         |   │   │   ├── Homepage.js
-         |   │   │   ├── ProfilePage.js
-         |   │   │   └── SplashPage.js
-         │   │   ├── Store
-         |   │   │   ├── Actions
-         |   │   │   ├── Reducers
-         |   │   │   ├── history.js
-         |   │   │   ├── index.js
-         |   │   │   └── InitialState.json
-         │   │   ├── utils
-         │   │   ├── App.js
-         │   │   └── index.js
-
-         ├── config
-         ├── controllers
-         ├── db
-         ├── middlewares
-         ├── models
-         ├── node_modules
-         ├── routes
-         ├── views
-         |   ├── layouts
-         |   ├── partials
-         |   │   │   ├── history.js
-         |   │   │   ├── index.js
-         |   │   │   └── InitialState.json
-         ├── .gitignore
-         ├── package-lock.json
-         ├── package.json
-         ├── Readme.md 
-         └── server.js
-
-
-</details> -->
+---
 
 ![Top of Landing Page](./landing-ss.jpg)
 
